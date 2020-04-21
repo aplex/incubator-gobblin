@@ -20,7 +20,7 @@ package org.apache.gobblin.config;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
-
+import java.util.List;
 import com.google.common.base.Optional;
 import com.google.common.base.Preconditions;
 import com.typesafe.config.Config;
@@ -39,6 +39,12 @@ public class ConfigBuilder {
     this.currentConfig =
         originDescription.isPresent() ? ConfigFactory.empty(this.originDestription.get()) : ConfigFactory.empty();
   }
+
+  public int Test_StyleCheck(){
+    int Invalid_variable_style = 1;
+    return Invalid_variable_style + 1;
+  }
+
 
   /**
    * Loads properties which have a given name prefix into the config. The following restrictions
