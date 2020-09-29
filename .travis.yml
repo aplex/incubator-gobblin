@@ -12,6 +12,10 @@ addons:
       - libaio-dev
       - libdbus-glib-1-dev
       - xsltproc
+  sonarcloud:
+    organization: "aplex"
+    token:
+      secure: "w77jzXGLysjsdrT20DPMBnWn4X4/Kwkx0o5ms6deYICKGn/SYD+PfKLm6GZmcUPCMVWD0cyrKR+fygzykJ7lOxIYGJnyg6ASkT1cmK22TgUCjXMbO8njdK5AjgnZEFR1yu4XbA4Du+DtDtyfJu20R9udZF5Us94OusVygaVFDPoRmfR7rKFMMnJUGPCmCQ2UBAoLxptcKV+HghosOBOo1NvTqZ+Ed80HmlRl4TgAcNd0rb+FNlKuYY/RdYPnb5uUNl4AYvZaphIt9mTvmO2P9VKONfS5XDsepkMq0B11e7HlxWi9z8jwcsI4xhLEQTB/10r/BbvpA3dmB/h9nIB9a4aTRY1O2JW3/4qNoU7d30v/chW3trFKuygPqvsYwkiSjInmTL4QxjCN4UZYzW7VdFX1xe+lG5+XIYWwCzoQUGwhkCNsGb8pvk/W+Ihrgxs4cQ7qCGpew/K8z/okSCoUjufOnK1BQGwc4etYntbuSQPTYsQKmiAY0/BtdN7dVtNvF26xPjwH33/U4hy5f/+EVvL3eyonUCyrWrUxs+Dpa8hwq3Jdi+MIlSyE9Q8mT8iCPTCzzvnbP6EfU2APlPHHc5x+nd+F31yayXqXaHAWpUARV5wE94qJv1n2dtGq1mhfYd2lf4RtPOj5/9Vws1Gwj2/cP/uwUcqZkimz7j/sfyw="
 
 before_cache:
   - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
@@ -37,6 +41,7 @@ before_script:
 script:
   - travis_retry ./travis/test.sh
   - travis_retry ./gradlew jacocoTestReport
+  - travis_retry ./gradlew sonarqube
 after_success:
   - bash <(cat .codecov_bash)
 after_failure: ./travis/junit-errors-to-stdout.sh
